@@ -44,8 +44,10 @@ maintmenu () {
         echo
         echo "Pulling new admin cli from github..."
         cd /var/tmp
+        rm -rf your_grace
         git clone https://github.com/jpegleg/your_grace
-        cp your_grace/your_grace.runtime ~/.bashrc /etc/your_grace.runtime
+        cp your_grace/your_grace.runtime ~/.bashrc 
+        cp your_grace/your_grace.runtime /etc/your_grace.runtime
         chmod +x /etc/your_grace.runtime
         init 1
       ;;
