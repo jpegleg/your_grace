@@ -14,7 +14,7 @@ fi
 
 maintmenu () {
   PS3='admin cli | execute maintenance <<< number seclection ⛁)  '
-  maintmenu=("download packages" "update system" "reboot" "single user mode" "quit cli session")
+  maintmenu=("download packages" "update system" "reboot" "single user mode" "update admin cli from github" "quit cli session")
   select selecta in "${maintmenu[@]}"; do
     case $selecta in
       "download packages")
@@ -38,6 +38,15 @@ maintmenu () {
          echo
          echo "Entering single user mode..."
          rmdir /var/tmp/yourgrace/.$(whoami)
+         init 1
+         ;;
+      "update admin cli from github")
+         echo
+         echo "Pulling new admin cli from github..."
+         cd /var/tmp
+         git clone https://github.com/jpegleg/your_grace
+         cp your_grace/your_grace.runtime ~/.bashrc /etc/your_grace.runtime
+         chmod +x /etc/your_grace.runtime
          init 1
          ;;
        "quit cli session")
