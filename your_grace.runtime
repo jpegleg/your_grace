@@ -31,13 +31,11 @@ maintmenu () {
       "reboot")
         echo
         echo "Rebooting system... ⛹️"
-        rmdir /var/tmp/yourgrace/.$(whoami)
         reboot
       ;;
       "single user mode")
         echo
         echo "Entering single user mode..."
-        rmdir /var/tmp/yourgrace/.$(whoami)
         init 1
       ;;
       "update admin cli from github")
