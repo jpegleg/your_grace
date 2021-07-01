@@ -86,8 +86,8 @@ usersmenu () {
          read addusergroup
          echo "enter the name of the group to add $addusergroup to:"
          read togroup
-         echo "adding $addusername to $togroup on $(hostname) $(date +%Y%m%d%H%M%S)"
-         usermod $addusername -G $togroup
+         echo "adding $addusergroup to $togroup on $(hostname) $(date +%Y%m%d%H%M%S)"
+         usermod $addusergroup -G $togroup
          echo
          echo
        ;;
@@ -96,11 +96,11 @@ usersmenu () {
          echo "remove user from group 🪄"
          echo
          echo "enter the username of the user to add to $(hostname):"
-         read addusername
+         read rmoveuserfrom
          echo "enter the secondary group to remove the user from on $(hostname):"
          read removefromgroup
-         echo "removing $addusername from $removefromgroup on $(hostname) $(date +%Y%m%d%H%M%S)"
-         usermod $addusername -W $removefromgroup
+         echo "removing $rmoveuserfrom from $removefromgroup on $(hostname) $(date +%Y%m%d%H%M%S)"
+         usermod $rmoveuserfrom -W $removefromgroup
          echo
          echo
        ;;
