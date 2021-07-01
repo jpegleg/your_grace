@@ -1,0 +1,205 @@
+#!/usr/bin/env bash
+
+# Run interactive administrative pre-defined actions.
+
+# If not root, abort.
+if [ $UID -ne 0 ]; then
+  echo "Not UID 0 root! Will not execute the administrative cli. Exiting..."
+  exit 1
+else
+  echo ">>> ... super user"
+fi
+
+# function section:
+
+maintmenu () {
+  PS3='admin cli | execute maintenance <<< number seclection ⛁)  '
+  maintmenu=("download packages" "update system" "reboot" "single user mode" "quit cli session")
+  select selecta in "${maintmenu[@]}"; do
+    case $selecta in
+      "download packages")
+         echo
+         echo "Downloading new packages 🪄"
+         aptitude update -y
+         echo
+      ;;
+      "update system")
+         echo
+         echo "Updating system 🏗️ "
+         aptitude upgrade -y
+      ;;
+      "reboot")
+         echo
+         echo "Rebooting system... ⛹️"
+         rmdir /var/tmp/yourgrace/.$(whoami)
+         reboot
+         ;;
+      "single user mode")
+         echo
+         echo "Entering single user mode..."
+         rmdir /var/tmp/yourgrace/.$(whoami)
+         init 1
+         ;;
+       "quit cli session")
+         clear
+         echo "User exit called. Good byte your grace ~ "
+         trapexit
+         ;;
+    *) echo "invalid option $REPLY";;
+    esac
+  done
+
+}
+
+usersmenu () {
+  PS3='admin cli | users options <<< number seclection ⛁)  '
+  maintmenu=("add user" "remove user" "add user to secondary group" "remove user from secondary group" "create new group" "delete group" "quit cli session")
+  select selecta in "${maintmenu[@]}"; do
+    case $selecta in
+      "remove user")
+         echo
+         echo "remove user 🪄"
+         echo
+         echo "enter the username of the user to remove from $(hostname):"
+         read delusername
+         echo "deleting $delusername from $(hostname) $(date +%Y%m%d%H%M%S)"
+         deluser --remove-home $delusername
+         echo
+         echo
+      ;;
+      "add user")
+         echo
+         echo "add user 🪄"
+         echo
+         echo "enter the username of the user to add to $(hostname):"
+         read addusername
+         echo "adding $addusername to $(hostname) $(date +%Y%m%d%H%M%S)"
+         useradd -m $addusername
+         echo
+         echo
+       ;;
+      "add user to secondary group")
+         echo
+         echo "add user to group 🪄"
+         echo
+         echo "enter the username of the user:"
+         read addusergroup
+         echo "enter the name of the group to add $addusergroup to:"
+         read togroup
+         echo "adding $addusername to $togroup on $(hostname) $(date +%Y%m%d%H%M%S)"
+         usermod $addusername -a $togroup
+         echo
+         echo
+       ;;
+      "remove user from secondary group")
+         echo
+         echo "remove user from group 🪄"
+         echo
+         echo "enter the username of the user to add to $(hostname):"
+         read addusername
+         echo "enter the secondary group to remove the user from on $(hostname):"
+         read removefromgroup
+         echo "removing $addusername from $removefromgroup on $(hostname) $(date +%Y%m%d%H%M%S)"
+         usermod $addusername -W $removefromgroup
+         echo
+         echo
+       ;;
+      "create new group")
+         echo
+         echo "create new group 🪄"
+         echo
+         echo "enter the group name to be added to $(hostname):"
+         read addgroup
+         echo "adding $addgroup on $(hostname) $(date +%Y%m%d%H%M%S)"
+         groupadd $addgroup
+         echo
+         echo
+       ;;
+      "delete group")
+         echo
+         echo "delete group 🪄"
+         echo
+         echo "enter the group name to be removed from $(hostname):"
+         read delgroup
+         echo "removing $delgroup on $(hostname) $(date +%Y%m%d%H%M%S)"
+         groupdel $delgroup
+         echo
+         echo
+       ;;
+       "quit cli session")
+         clear
+         echo "User exit called. Good byte your grace ~ "
+         trapexit
+         ;;
+    *) echo "invalid option $REPLY";;
+    esac
+  done
+
+}
+
+
+selfproc () {
+  export NUMAPROC="$(whoami)$(date +%Y%m%d%H%M%S%N)"
+  clear
+  echo
+  uname -a
+  timestamp=$(date +%Y%m%d%H%M%S)
+  echo $timestamp
+  uptime
+  echo "--------------------------------------+"
+  echo " 👑 Your Grace 👑 "
+  echo
+  echo -e "Administrative console for $(hostname)\e[1:32m activated.\e[0m"
+  echo "+++++++++++++++++++++++++++++++++++++++++++++++++"
+  echo
+  PS3='admin cli <<< number seclection ⛁)  '
+  mainmenu=("maintenance" "services" "users" "security" "monitoring" "data" "quit cli session")
+  select selecta in "${mainmenu[@]}"; do
+    case $selecta in
+      "maintenance")
+         clear
+         echo
+         echo "Maintenance options >>>"
+         echo
+         maintmenu
+      ;;
+      "services")
+         echo "Do services stuff here."
+      ;;
+      "users")
+         echo
+         echo "User management options >>>"
+         echo
+         usersmenu
+         ;;
+      "security")
+         echo "Do security stuff here."
+         ;;
+      "monitoring")
+         echo "Do monitoring stuff here."
+         ;;
+      "data")
+         echo "Do data stuff here."
+         ;;
+       "quit cli session")
+         clear
+         echo "User exit called. Good byte your grace ~ "
+         trapexit
+         ;;
+    *) echo "invalid option $REPLY";;
+    esac
+  done
+}
+
+lockdir () {
+  ls /var/tmp/yourgrace || exit 1
+  mkdir /var/tmp/yourgrace/.$(whoami) || exit 1
+}
+
+trapexit () {
+  rmdir /var/tmp/yourgrace/.$(whoami) && exit 1
+}
+
+lockdir
+selfproc
+trapexit
