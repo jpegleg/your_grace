@@ -87,7 +87,7 @@ usersmenu () {
          echo "enter the name of the group to add $addusergroup to:"
          read togroup
          echo "adding $addusername to $togroup on $(hostname) $(date +%Y%m%d%H%M%S)"
-         usermod $addusername -a $togroup
+         usermod $addusername -G $togroup
          echo
          echo
        ;;
