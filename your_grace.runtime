@@ -47,7 +47,7 @@ maintmenu () {
         cp your_grace/your_grace.runtime ~/.bashrc 
         cp your_grace/your_grace.runtime /etc/your_grace.runtime
         chmod +x /etc/your_grace.runtime
-        init 1
+        trapexit
       ;;
       "restart cli session")
         clear
