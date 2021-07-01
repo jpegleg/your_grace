@@ -197,9 +197,12 @@ lockdir () {
 }
 
 trapexit () {
-  rmdir /var/tmp/yourgrace/.$(whoami) && exit 1
+  rmdir /var/tmp/yourgrace/.$(whoami)
+  $0 "$$" &
+  exit 0
 }
+
+trap trapexit HUP TERM INT
 
 lockdir
 selfproc
-trapexit
