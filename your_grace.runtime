@@ -14,7 +14,7 @@ fi
 
 maintmenu () {
   PS3='admin cli | execute maintenance <<< number seclection ⛁)  '
-  maintmenu=("download packages" "update system" "reboot" "single user mode" "update admin cli from github" "quit cli session")
+  maintmenu=("download packages" "update system" "reboot" "single user mode" "update admin cli from github" "restart cli session")
   select selecta in "${maintmenu[@]}"; do
     case $selecta in
       "download packages")
@@ -49,9 +49,9 @@ maintmenu () {
         chmod +x /etc/your_grace.runtime
         init 1
       ;;
-      "quit cli session")
+      "restart cli session")
         clear
-        echo "User exit called. Good byte your grace ~ "
+        echo "User exit restart called. Good byte your grace ~ "
         trapexit
       ;;
     *) echo "invalid option $REPLY";;
@@ -62,7 +62,7 @@ maintmenu () {
 
 usersmenu () {
   PS3='admin cli | users options <<< number seclection ⛁)  '
-  maintmenu=("add user" "remove user" "add user to secondary group" "remove user from secondary group" "create new group" "delete group" "quit cli session")
+  maintmenu=("add user" "remove user" "add user to secondary group" "remove user from secondary group" "create new group" "delete group" "restart cli session")
   select selecta in "${maintmenu[@]}"; do
     case $selecta in
       "remove user")
@@ -135,7 +135,7 @@ usersmenu () {
         echo
         echo
       ;;
-      "quit cli session")
+      "restart cli session")
         clear
         echo "User exit called. Good byte your grace ~ "
         trapexit
@@ -162,7 +162,7 @@ selfproc () {
   echo "+++++++++++++++++++++++++++++++++++++++++++++++++"
   echo
   PS3='admin cli <<< number seclection ⛁)  '
-  mainmenu=("maintenance" "services" "users" "security" "monitoring" "data" "quit cli session")
+  mainmenu=("maintenance" "services" "users" "security" "monitoring" "data" "restart cli session")
   select selecta in "${mainmenu[@]}"; do
     case $selecta in
       "maintenance")
@@ -190,7 +190,7 @@ selfproc () {
       "data")
         echo "Do data stuff here."
       ;;
-      "quit cli session")
+      "restart cli session")
         clear
         echo "User exit called. Good byte your grace ~ "
         trapexit
