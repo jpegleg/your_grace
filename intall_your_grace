@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+# If not root, abort.
+if [ $UID -ne 0 ]; then
+  echo "Not UID 0 root! Will not execute the administrative cli. Exiting..."
+  exit 1
+else
+  echo ">>> ... super user"
+fi
+
 echo " Changing root bash to restricted admin cli..."
 
 cp your_grace.runtime /etc/
