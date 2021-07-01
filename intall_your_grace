@@ -8,6 +8,11 @@ else
   echo ">>> ... super user"
 fi
 
+echo "Currently your_grace is for debian based systems with aptitude."
+
+echo "Checking if this system has required maintenance program aptitude, will exit if not found"
+which aptitude || exit
+
 echo " Changing root bash to restricted admin cli..."
 
 cp your_grace.runtime /etc/
