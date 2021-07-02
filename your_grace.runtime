@@ -83,7 +83,7 @@ usersmenu () {
         cat /etc/shadow | while read line; do 
           echo $line;
           sleep 1;
-        dome
+        done
         echo
         echo
       ;;
@@ -206,7 +206,7 @@ secmenu () {
         cat /etc/shadow | while read line; do 
           echo $line;
           sleep 1;
-        dome
+        done
         echo
         echo
       ;;
