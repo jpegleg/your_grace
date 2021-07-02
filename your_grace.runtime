@@ -65,7 +65,7 @@ servicesmenu () {
   maintmenu=("list services" "stop service" "restart service" "start service" "enable service" "disable service" "install a service" "restart cli session")
   select selecta in "${maintmenu[@]}"; do
     case $selecta in
-      "list servicess")
+      "list services")
         echo
         systemctl list-unit-files
         echo
