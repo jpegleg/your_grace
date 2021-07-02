@@ -145,8 +145,8 @@ servicesmenu () {
         echo "Enter the package name to remove:"
         read installservice
         echo
-        purge="$(grep $installerservice /opt/added/packages.list | tail -n1)
-        aptitude purge -y "$purge"
+        purge="$(grep $installerservice /opt/added/packages.list | tail -n1)"
+        aptitude purge -y "$purge" && grep -v "$purge" /opt/added/packages.list > /opt/added/packages.list.tmp && mv /opt/added/packages.list.tmp /opt/added/packages.list
         echo
       ;;
       "remove all added packages")
@@ -154,7 +154,7 @@ servicesmenu () {
         echo "Remove all added packages 📦 "
         echo
         cat /opt/added/packages.list | sort -u | while read line; do
-          aptitude purge -y "$line"
+          aptitude purge -y "$line" && grep -v "$line" /opt/added/packages.list > /opt/added/packages.list.tmp && mv /opt/added/packages.list.tmp /opt/added/packages.list
         done
         echo
       ;;
