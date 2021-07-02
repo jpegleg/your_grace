@@ -171,7 +171,7 @@ usersmenu () {
 
 secmenu () {
   PS3='admin cli | security options <<< number seclection ⛁)  '
-  maintmenu=("change password" "list all users and password hashes" "change user password" "shutdown network" "restart network" "shutdown ssh" "start ssh" "power off system" "restart cli session")
+  maintmenu=("change password" "list all users and password hashes" "change user password" "shutdown network" "restart network" "shutdown ssh" "restart ssh" "power off system" "restart cli session")
   select selecta in "${maintmenu[@]}"; do
     case $selecta in
       "change password")
@@ -233,7 +233,7 @@ secmenu () {
         echo
         echo
       ;;
-      "restart sshd")
+      "restart ssh")
         echo
         echo "restart sshd 🪄"
         echo
