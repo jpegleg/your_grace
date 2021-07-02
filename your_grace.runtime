@@ -146,6 +146,66 @@ usersmenu () {
 
 }
 
+secmenu () {
+  PS3='admin cli | security options <<< number seclection ⛁)  '
+  maintmenu=("change password" "shutdown network" "restart network" "shutdown ssh" "start ssh" "power off system" "restart cli session")
+  select selecta in "${maintmenu[@]}"; do
+    case $selecta in
+      "change passwordr")
+        echo
+        echo "change password 🪄"
+        echo
+        passwd
+        echo
+        echo
+      ;;
+      "shutdown network")
+        echo
+        echo "stopping networking service 🪄"
+        echo
+        systemctl stop networking
+        echo
+        echo
+      ;;
+      "shutdown ssh")
+        echo
+        echo "shutdown ssh 🪄"
+        echo
+        echo "shutdown sshd"
+        systemctl stop sshd
+        echo
+        echo
+      ;;
+      "power off system")
+        shutdown -h now
+      ;;
+      "restart network")
+        echo
+        echo "restart network 🪄"
+        echo
+        systemctl restart networking
+        echo
+        echo
+      ;;
+      "restart sshd")
+        echo
+        echo "restart sshd 🪄"
+        echo
+        systemctl restart sshd
+        echo
+        echo
+      ;;
+      "restart cli session")
+        clear
+        echo "User exit called. Good byte your grace ~ "
+        trapexit
+      ;;
+    *) echo "invalid option $REPLY";;
+    esac
+  done
+
+}
+
 monmenu () {
   PS3='admin cli | monitor options <<< number seclection ⛁)  '
   maintmenu=("top processes" "processes total count" "uptime" "open files count" "disk usage" "inode usage" "restart cli session")
