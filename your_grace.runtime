@@ -19,7 +19,7 @@ maintmenu () {
     case $selecta in
       "download packages")
         echo
-        echo "Downloading new packages 🪄"
+        echo "Downloading new packages 📦"
         aptitude update -y
         echo
       ;;
@@ -62,7 +62,7 @@ maintmenu () {
 
 servicesmenu () {
   PS3='admin cli | system services <<< number seclection ⛁)  '
-  maintmenu=("list services" "stop service" "restart service" "start service" "enable service" "disable service" "install a service" "restart cli session")
+  maintmenu=("list services" "stop service" "restart service" "start service" "enable service" "disable service" "install a service" "hold a service package" "un-hold a service package" "restart cli session")
   select selecta in "${maintmenu[@]}"; do
     case $selecta in
       "list services")
@@ -127,12 +127,42 @@ servicesmenu () {
       ;;
       "install a service")
         echo
-        echo "Install a service ⛹️ "
+        echo "Install a service 📦 "
         echo
         echo "Enter the service name to install:"
         read installservice
         echo
         aptitude install -y "$installservice"
+        echo
+      ;;
+      "un-install a service")
+        echo
+        echo "Un-install a service ⛹ "
+        echo
+        echo "Enter the service name to in-install:"
+        read uninstalls
+        echo
+        aptitude purge -y "$uninstalls"
+        echo
+      ;;
+      "hold a service package")
+        echo
+        echo "Hold a service 📦 "
+        echo
+        echo "Enter the service name to hold back from updates:"
+        read holda
+        echo
+        aptitude hold "$holda"
+        echo
+      ;;
+      "un-hold a service package")
+        echo
+        echo "Un-hold a service 📦 "
+        echo
+        echo "Enter the service name to un-hold to allow patches and updates:"
+        read holda
+        echo
+        aptitude unhold "$holda"
         echo
       ;;
       "restart cli session")
