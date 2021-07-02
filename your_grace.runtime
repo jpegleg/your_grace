@@ -154,7 +154,7 @@ monmenu () {
       "top processes")
          top
       ;;
-      "processses total count")
+      "processes total count")
         echo
         echo "processes total count 🪄"
         echo
