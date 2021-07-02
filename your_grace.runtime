@@ -2,7 +2,8 @@
 
 # Run interactive administrative pre-defined actions.
 
-# If not root, abort.
+# If not root, abort. 
+# Add custom alerting to get notified about your_grace activity or attempts.
 if [ $UID -ne 0 ]; then
   echo "Not UID 0 root! Will not execute the administrative cli. Exiting..."
   exit 1
