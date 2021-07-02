@@ -311,6 +311,67 @@ monmenu () {
 
 }
 
+datamenu () {
+  PS3='admin cli | data options <<< number seclection ⛁)  '
+  maintmenu=("read log files" "search in logs for string" "last 20 users" "kernel buffer read" "restart cli session")
+  select selecta in "${maintmenu[@]}"; do
+    case $selecta in
+      "top processes")
+         top
+      ;;
+      "read log files")
+        echo
+        echo "read log files 🪄"
+        echo
+        cat /var/log/* | while read line; do
+          echo "$line"
+          sleep 1
+        done
+        echo
+        echo
+      ;;
+      "search in logs for string")
+        echo
+        echo "search log files for string 🪄"
+        echo
+        echo "enter the string to search for:"
+        read searchstring
+        echo
+        echo "searching in /var/log/ for matches of $searchstring now..."
+        echo
+        grep -iR "$searchstring" /var/log/
+        echo
+        echo
+      ;;
+      "last 20 users")
+        echo
+        echo "last twnenty users 🪄"
+        echo
+        last | head -n20
+        echo
+        echo
+      ;;
+      "kernel buffer read")
+        echo
+        echo "kernel buffer read 🪄"
+        echo
+        dmesg | while read line; do
+          echo "$line"
+          sleep 1
+        done
+        echo
+        echo
+      ;;
+      "restart cli session")
+        clear
+        echo "User exit called. Good byte your grace ~ "
+        trapexit
+      ;;
+    *) echo "invalid option $REPLY";;
+    esac
+  done
+
+}
 selfproc () {
   export NUMAPROC="$(whoami)$(date +%Y%m%d%H%M%S%N)"
   clear
@@ -358,7 +419,10 @@ selfproc () {
         monmenu
       ;;
       "data")
-        echo "Do data stuff here."
+        echo
+        echo "Data options >>>"
+        echo
+        datamenu
       ;;
       "restart cli session")
         clear
