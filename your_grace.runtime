@@ -146,6 +146,64 @@ usersmenu () {
 
 }
 
+monmenu () {
+  PS3='admin cli | monitor options <<< number seclection ⛁)  '
+  maintmenu=("top processes" "processes total count" "uptime" "open files count" "disk usage" "inode usage" "restart cli session")
+  select selecta in "${maintmenu[@]}"; do
+    case $selecta in
+      "top processes")
+         top
+      ;;
+      "processses total count")
+        echo
+        echo "processes total count 🪄"
+        echo
+        ps auxwww | wc -l
+        echo
+        echo
+      ;;
+      "uptime")
+        echo
+        echo "uptime 🪄"
+        echo
+        uptime
+        echo
+        echo
+      ;;
+      "open files count")
+        echo
+        echo "open files count 🪄"
+        echo
+        lsof | wc -l
+        echo
+        echo
+      ;;
+      "disk usage")
+        echo
+        echo "disk usage 🪄"
+        echo
+        df -h
+        echo
+        echo
+      ;;
+      "inode usage")
+        echo
+        echo "inode usage 🪄"
+        echo
+        df -i
+        echo
+        echo
+      ;;
+      "restart cli session")
+        clear
+        echo "User exit called. Good byte your grace ~ "
+        trapexit
+      ;;
+    *) echo "invalid option $REPLY";;
+    esac
+  done
+
+}
 
 selfproc () {
   export NUMAPROC="$(whoami)$(date +%Y%m%d%H%M%S%N)"
@@ -185,7 +243,10 @@ selfproc () {
         echo "Do security stuff here."
       ;;
       "monitoring")
-        echo "Do monitoring stuff here."
+        echo
+        echo "User management options >>>"
+        echo
+        monmenu
       ;;
       "data")
         echo "Do data stuff here."
