@@ -62,7 +62,7 @@ maintmenu () {
 
 servicesmenu () {
   PS3='admin cli | system services <<< number seclection ⛁)  '
-  maintmenu=("list services" "stop service" "restart service" "start service" "remove added package" "remove all added packages" "enable service" "disable service" "install a service" "hold a service package" "un-hold a service package" "restart cli session")
+  maintmenu=("list services" "stop service" "restart service" "start service" "remove added package" "remove all added packages" "enable service" "disable service" "install added package" "hold a service package" "un-hold a service package" "restart cli session")
   select selecta in "${maintmenu[@]}"; do
     case $selecta in
       "list services")
@@ -125,7 +125,7 @@ servicesmenu () {
         systemctl disable "$disableservice"
         echo
       ;;
-      "install added package ")
+      "install added package")
         echo
         echo "Install an additional 📦 "
         echo
