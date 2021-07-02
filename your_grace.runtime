@@ -134,7 +134,7 @@ servicesmenu () {
         echo
         echo "Adding $installservice to the added packages list."
         mkdir -p /opt/added 2>/dev/null
-        echo $installerservice >> /opt/added/packages.list
+        echo $installservice >> /opt/added/packages.list
         aptitude install -y "$installservice"
         echo
       ;;
