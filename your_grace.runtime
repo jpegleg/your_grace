@@ -62,7 +62,7 @@ maintmenu () {
 
 usersmenu () {
   PS3='admin cli | users options <<< number seclection ⛁)  '
-  maintmenu=("add user" "remove user" "add user to secondary group" "remove user from secondary group" "create new group" "delete group" "restart cli session")
+  maintmenu=("add user" "list all users and password hashes" "change user password" "remove user" "add user to secondary group" "remove user from secondary group" "create new group" "delete group" "restart cli session")
   select selecta in "${maintmenu[@]}"; do
     case $selecta in
       "remove user")
@@ -73,6 +73,29 @@ usersmenu () {
         read delusername
         echo "deleting $delusername from $(hostname) $(date +%Y%m%d%H%M%S)"
         deluser --remove-home $delusername
+        echo
+        echo
+      ;;
+      "list all users and password hashes")
+        echo
+        echo "list all users 🪄"
+        echo
+        cat /etc/shadow | while read line; do 
+          echo $line;
+          sleep 1;
+        dome
+        echo
+        echo
+      ;;
+      "change user password")
+        echo
+        echo "change user password 🪄"
+        echo
+        echo "enter username to change password for:"
+        read changeuserpass
+        echo "changing password for $changeuserpass"
+        echo
+        passwd $changeuserpass
         echo
         echo
       ;;
@@ -148,7 +171,7 @@ usersmenu () {
 
 secmenu () {
   PS3='admin cli | security options <<< number seclection ⛁)  '
-  maintmenu=("change password" "shutdown network" "restart network" "shutdown ssh" "start ssh" "power off system" "restart cli session")
+  maintmenu=("change password" "list all users and password hashes" "change user password" "shutdown network" "restart network" "shutdown ssh" "start ssh" "power off system" "restart cli session")
   select selecta in "${maintmenu[@]}"; do
     case $selecta in
       "change password")
@@ -173,6 +196,29 @@ secmenu () {
         echo
         echo "shutdown sshd"
         systemctl stop sshd
+        echo
+        echo
+      ;;
+      "list all users and password hashes")
+        echo
+        echo "list all users 🪄"
+        echo
+        cat /etc/shadow | while read line; do 
+          echo $line;
+          sleep 1;
+        dome
+        echo
+        echo
+      ;;
+      "change user password")
+        echo
+        echo "change user password 🪄"
+        echo
+        echo "enter username to change password for:"
+        read changeuserpass
+        echo "changing password for $changeuserpass"
+        echo
+        passwd $changeuserpass
         echo
         echo
       ;;
