@@ -62,7 +62,7 @@ maintmenu () {
 
 servicesmenu () {
   PS3='admin cli | system services <<< number seclection ⛁)  '
-  maintmenu=("list services" "stop service" "restart service" "start service" "enable service" "disable service" "install a service" "hold a service package" "un-hold a service package" "restart cli session")
+  maintmenu=("list services" "stop service" "restart service" "start service" "remove added package" "remove all added packages" "enable service" "disable service" "install a service" "hold a service package" "un-hold a service package" "restart cli session")
   select selecta in "${maintmenu[@]}"; do
     case $selecta in
       "list services")
@@ -125,14 +125,37 @@ servicesmenu () {
         systemctl disable "$disableservice"
         echo
       ;;
-      "install a service")
+      "install added package ")
         echo
-        echo "Install a service 📦 "
+        echo "Install an additional 📦 "
         echo
-        echo "Enter the service name to install:"
+        echo "Enter the package name to install:"
         read installservice
         echo
+        echo "Adding $installservice to the added packages list."
+        mkdir -p /opt/added 2>/dev/null
+        echo $installerservice >> /opt/added/packages.list
         aptitude install -y "$installservice"
+        echo
+      ;;
+      "remove added package")
+        echo
+        echo "Remove added packages 📦 "
+        echo
+        echo "Enter the package name to remove:"
+        read installservice
+        echo
+        purge="$(grep $installerservice /opt/added/packages.list | tail -n1)
+        aptitude purge -y "$purge"
+        echo
+      ;;
+      "remove all added packages")
+        echo
+        echo "Remove all added packages 📦 "
+        echo
+        cat /opt/added/packages.list | sort -u | while read line; do
+          aptitude purge -y "$line"
+        done
         echo
       ;;
       "un-install a service")
