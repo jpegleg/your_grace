@@ -60,6 +60,92 @@ maintmenu () {
 
 }
 
+servicesmenu () {
+  PS3='admin cli | system services <<< number seclection ⛁)  '
+  maintmenu=("list services" "stop service" "restart service" "start service" "enable service" "disable service" "install a service" "restart cli session")
+  select selecta in "${maintmenu[@]}"; do
+    case $selecta in
+      "list servicess")
+        echo
+        systemctl list-unit-files
+        echo
+      ;;
+      "stop service")
+        echo
+        echo "Stop a service ⛹️ "
+        echo
+        echo "Enter the service name to stop:"
+        read stopservice
+        echo
+        echo "Stopping $stopservice"
+        systemctl stop "$stopservice"
+        echo
+      ;;
+      "start service")
+        echo
+        echo "Start a service ⛹️ "
+        echo
+        echo "Enter the service name to start:"
+        read startservice
+        echo
+        echo "Starting $startservice"
+        systemctl start "$stopservice"
+        echo
+      ;;
+      "restart service")
+        echo
+        echo "Restart a service ⛹️ "
+        echo
+        echo "Enter the service name to restart:"
+        read restartservice
+        echo
+        echo "Retarting $restartservice"
+        systemctl restart "$restopservice"
+        echo
+      ;;
+      "enable service")
+        echo
+        echo "Enable a service ⛹️ "
+        echo
+        echo "Enter the service name to enable:"
+        read enablseservice
+        echo
+        echo "Enable eservice $enablseservice"
+        systemctl enable "$enablseservice"
+        echo
+      ;;
+      "disable service")
+        echo
+        echo "Disablee a service ⛹️ "
+        echo
+        echo "Enter the service name to disable:"
+        read disableservice
+        echo
+        echo "Disable $disableservice"
+        systemctl disable "$disableservice"
+        echo
+      ;;
+      "install a service")
+        echo
+        echo "Install a service ⛹️ "
+        echo
+        echo "Enter the service name to install:"
+        read installservice
+        echo
+        aptitude install -y "$installservice"
+        echo
+      ;;
+      "restart cli session")
+        clear
+        echo "User exit restart called. Good byte your grace ~ "
+        trapexit
+      ;;
+    *) echo "invalid option $REPLY";;
+    esac
+  done
+
+}
+
 usersmenu () {
   PS3='admin cli | users options <<< number seclection ⛁)  '
   maintmenu=("add user" "list all users and password hashes" "change user password" "remove user" "add user to secondary group" "remove user from secondary group" "create new group" "delete group" "restart cli session")
@@ -416,7 +502,10 @@ selfproc () {
         maintmenu
       ;;
       "services")
-        echo "Do services stuff here."
+        echo
+        echo "Services options >>>"
+        echo
+        servicesmenu
       ;;
       "users")
         echo
