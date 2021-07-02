@@ -151,7 +151,7 @@ secmenu () {
   maintmenu=("change password" "shutdown network" "restart network" "shutdown ssh" "start ssh" "power off system" "restart cli session")
   select selecta in "${maintmenu[@]}"; do
     case $selecta in
-      "change passwordr")
+      "change password")
         echo
         echo "change password 🪄"
         echo
