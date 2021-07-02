@@ -300,7 +300,10 @@ selfproc () {
         usersmenu
       ;;
       "security")
-        echo "Do security stuff here."
+        echo
+        echo "Security options >>>"
+        echo
+        secmenu
       ;;
       "monitoring")
         echo
