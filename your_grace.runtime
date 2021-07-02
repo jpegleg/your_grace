@@ -323,7 +323,11 @@ datamenu () {
         echo
         echo "read log files 🪄"
         echo
-        cat /var/log/* | while read line; do
+        cat /var/log/*.log /var/log/messages | while read line; do
+          echo "$line"
+          sleep 1
+        done
+        zcat /var/log/*.gz | while read line; do
           echo "$line"
           sleep 1
         done
@@ -337,9 +341,11 @@ datamenu () {
         echo "enter the string to search for:"
         read searchstring
         echo
-        echo "searching in /var/log/ for matches of $searchstring now..."
+        echo "searching in /var/log/ for matches of $searchstring now, not case sensitive..."
         echo
-        grep -iR "$searchstring" /var/log/
+        grep -iR "$searchstring" /var/log/ | while read line; do
+          echo "$line"
+        done
         echo
         echo
       ;;
