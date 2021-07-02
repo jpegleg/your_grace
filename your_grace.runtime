@@ -254,7 +254,7 @@ secmenu () {
 
 monmenu () {
   PS3='admin cli | monitor options <<< number seclection ⛁)  '
-  maintmenu=("top processes" "processes total count" "uptime" "open files count" "disk usage" "inode usage" "restart cli session")
+  maintmenu=("top processes" "read processes" "processes total count" "uptime" "open files count" "disk usage" "inode usage" "restart cli session")
   select selecta in "${maintmenu[@]}"; do
     case $selecta in
       "top processes")
@@ -265,6 +265,17 @@ monmenu () {
         echo "processes total count 🪄"
         echo
         ps auxwww | wc -l
+        echo
+        echo
+      ;;
+      "read processes")
+        echo
+        echo "read processes 🪄"
+        echo
+        ps auxwww | while read line; do
+          echo "$line"
+          sleep 1
+        done
         echo
         echo
       ;;
@@ -345,6 +356,7 @@ datamenu () {
         echo
         grep -iR "$searchstring" /var/log/ | while read line; do
           echo "$line"
+          sleep 1
         done
         echo
         echo
