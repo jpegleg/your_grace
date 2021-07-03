@@ -6,9 +6,11 @@
 # Add custom alerting to get notified about your_grace activity or attempts.
 if [ $UID -ne 0 ]; then
   echo "Not UID 0 root! Will not execute the administrative cli. Exiting..."
+  logger "your_grace access attempted from non-priv user" 2>/dev/null
   exit 1
 else
   echo ">>> ... super user"
+  logger "your_grace session activated" >/dev/null
 fi
 
 # function section:
@@ -389,7 +391,7 @@ usersmenu () {
 
 secmenu () {
   PS3='admin cli | security options <<< number seclection ⛁)  '
-  maintmenu=("change password" "list all users and password hashes" "change user password" "shutdown network" "restart network" "shutdown ssh" "restart ssh" "power off system" "restart cli session")
+  maintmenu=("change password" "list all users and password hashes" "remove authorized keys" "change user password" "shutdown network" "restart network" "shutdown ssh" "restart ssh" "power off system" "restart cli session")
   select selecta in "${maintmenu[@]}"; do
     case $selecta in
       "change password")
@@ -405,6 +407,14 @@ secmenu () {
         echo "stopping networking service 🪄"
         echo
         systemctl stop networking
+        echo
+        echo
+      ;;
+      "remove authorized keys")
+        echo
+        echo "remove root authorized keys 🪄"
+        echo
+        rm -f ~/.ssh/authorized_keys ~/.ssh/authorized_keys* 2>/dev/null
         echo
         echo
       ;;
@@ -680,6 +690,7 @@ selfproc () {
 }
 
 trapexit () {
+  logger "your_grace session terminated" >/dev/null &
   /etc/your_grace.runtime
 }
 
