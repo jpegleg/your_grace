@@ -61,6 +61,55 @@ maintmenu () {
 
 }
 
+dockermenu () {
+  PS3='admin cli | docker <<< number seclection ⛁)  '
+  maintmenu=("list containers" "stop container" "prune" "start container" "restart cli session")
+  select selecta in "${maintmenu[@]}"; do
+    case $selecta in
+      "list containers")
+        echo
+        echo "List docker containers 🐋"
+        docker container ls
+        echo
+      ;;
+      "stop container")
+        echo
+        echo "Stop a container 🐋"
+        echo
+        echo "Enter the target for docker container stop:"
+        read stopcont
+        echo
+        docker contaienr stop $stopcont
+        echo
+      ;;
+      "start container")
+        echo
+        echo "Start a container 🐋"
+        echo
+        echo "Enter the target for docker container run options, use doublequotes:"
+        read startcont
+        echo
+        docker contaienr run "$stopcont"
+        echo
+      ;;
+      "prune")
+        echo
+        echo "Docker system prune 🐋"
+        echo
+        docker system prune -af
+        echo
+      ;;
+      "restart cli session")
+        clear
+        echo "User exit restart called. Good byte your grace ~ "
+        trapexit
+      ;;
+    *) echo "invalid option $REPLY";;
+    esac
+  done
+
+}
+
 servicesmenu () {
   PS3='admin cli | system services <<< number seclection ⛁)  '
   maintmenu=("list services" "stop service" "restart service" "start service" "remove added package" "remove all added packages" "enable service" "disable service" "install added package" "hold a service package" "un-hold a service package" "restart cli session")
@@ -546,7 +595,7 @@ selfproc () {
   echo "+++++++++++++++++++++++++++++++++++++++++++++++++"
   echo
   PS3='admin cli <<< number seclection ⛁)  '
-  mainmenu=("maintenance" "services" "users" "security" "monitoring" "data" "restart cli session")
+  mainmenu=("maintenance" "services" "docker" "users" "security" "monitoring" "data" "restart cli session")
   select selecta in "${mainmenu[@]}"; do
     case $selecta in
       "maintenance")
@@ -567,6 +616,12 @@ selfproc () {
         echo "User management options >>>"
         echo
         usersmenu
+      ;;
+      "docker")
+        echo
+        echo "Docker management options >>>"
+        echo
+        dockermenu
       ;;
       "security")
         echo
