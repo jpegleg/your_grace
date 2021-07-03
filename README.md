@@ -14,9 +14,9 @@ Install your_grace:
 
 sudo su -
 
-chmod +x install
+chmod +x install_your_grace
 
-./install
+./install_your_grace
 
 And then say goodbyte to your regular root bash shell.
 
