@@ -76,7 +76,7 @@ dockermenu () {
         echo
         echo "Read docker logs 🐋"
         echo
-        cat /var/lib/docker/*/*-json.log | while read line; do
+        cat /var/lib/docker/containers/*/*-json.log | while read line; do
           echo "$line"
           sleep 1
         done
