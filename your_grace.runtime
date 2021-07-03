@@ -90,7 +90,7 @@ dockermenu () {
         echo "Enter the target for docker container run option, use double quotes:"
         read startcont
         echo
-        docker container run -d --rm "$stopcont"
+        docker container run -d --rm "$startcont"
         echo
       ;;
       "prune")
