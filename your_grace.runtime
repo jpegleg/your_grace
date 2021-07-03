@@ -79,17 +79,18 @@ dockermenu () {
         echo "Enter the target for docker container stop:"
         read stopcont
         echo
-        docker contaienr stop $stopcont
+        docker container stop $stopcont
         echo
       ;;
       "start container")
         echo
         echo "Start a container 🐋"
         echo
-        echo "Enter the target for docker container run options, use doublequotes:"
+        echo "What you enter will come after docker run -d --rm "
+        echo "Enter the target for docker container run option, use double quotes:"
         read startcont
         echo
-        docker contaienr run "$stopcont"
+        docker container run -d --rm "$stopcont"
         echo
       ;;
       "prune")
