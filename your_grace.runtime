@@ -29,7 +29,7 @@ maintmenu () {
         echo "Updating system 🏗️ "
         aptitude upgrade -y
       ;;
-      "aptitude insterface")
+      "aptitude interface")
         echo
         echo "Entering aptitude... 🏗 "
         aptitude
