@@ -86,11 +86,14 @@ dockermenu () {
         echo
         echo "Start a container 🐋"
         echo
-        echo "What you enter will come after docker run -d --rm "
-        echo "Enter the target for docker container run option:"
+        echo "What you enter will come after docker run -d --rm, first we'll set the ports and then the image. "
+        echo "Enter the ports options:"
+        read ports
+        echo
+        echo "Enter the target image for docker container run option:"
         read startcont
         echo
-        docker run -d --rm "$startcont"
+        docker run -d --rm -p "$ports" "$startcont"
         echo
       ;;
       "prune")
