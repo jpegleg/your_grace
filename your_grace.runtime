@@ -17,7 +17,7 @@ fi
 
 maintmenu () {
   PS3='admin cli | execute maintenance <<< number seclection ⛁)  '
-  maintmenu=("download packages" "update system" "aptitude interface" "purge old packages" "reboot" "mount all configured drives" "single user mode" "update admin cli from github" "restart cli session")
+  maintmenu=("download packages" "update system" "dist upgrade" "aptitude interface" "purge old packages" "reboot" "mount all configured drives" "single user mode" "update admin cli from github" "restart cli session")
   select selecta in "${maintmenu[@]}"; do
     case $selecta in
       "download packages")
@@ -43,7 +43,13 @@ maintmenu () {
         aptitude
         echo
       ;;
-
+      "dist upgrade")
+        ech
+        echo "Dist upgrade... 🏗 "
+        echo
+        aptitude dist-upgrade
+        echo
+      ;;
       "reboot")
         echo
         echo "Rebooting system... ⛹️"
