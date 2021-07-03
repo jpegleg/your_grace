@@ -552,7 +552,7 @@ monmenu () {
 
 datamenu () {
   PS3='admin cli | data options <<< number seclection ⛁)  '
-  maintmenu=("read log files" "search in logs for string" "last 20 users" "kernel buffer read" "restart cli session")
+  maintmenu=("read log files" "network connections" "network interfaces" "search in logs for string" "last 20 users" "kernel buffer read" "restart cli session")
   select selecta in "${maintmenu[@]}"; do
     case $selecta in
       "top processes")
@@ -567,6 +567,28 @@ datamenu () {
           sleep 1
         done
         zcat /var/log/*.gz | while read line; do
+          echo "$line"
+          sleep 1
+        done
+        echo
+        echo
+      ;;
+      "network interfaces")
+        echo
+        echo "network interfaces 🪄"
+        echo
+        ip a | while read line; do
+          echo "$line"
+          sleep 1
+        done
+        echo
+        echo
+      ;;
+      "network connections")
+        echo
+        echo "network connections 🪄"
+        echo
+        ss -tanu | while read line; do
           echo "$line"
           sleep 1
         done
