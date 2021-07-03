@@ -20,6 +20,15 @@ chmod +x install_your_grace
 
 And then say goodbyte to your regular root bash shell.
 
+To more fully lock it away, use the desu version of the install script:
+
+chmod =x desu_install_your_grace
+
+./desu_install_your_grace
+
+And then say goodbyte to your regular root bash shell, and regular root shells.
+
+
 Navigate the menus to execute different tasks on the CLI.
 
 Added packages from after your_grace is installed are tracked in /opt/added/packages.list
