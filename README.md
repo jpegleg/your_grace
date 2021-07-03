@@ -4,7 +4,8 @@ administrative console .bashrc
 WARNING!
 
 Installation of this can make it difficult or impossible to get a root bash shell.
-Root bash sessions become trapped inside of this admin cli.
+Root bash sessions become trapped inside of this admin cli. The desu installer makes it even
+more difficult to get a full root shell back.
 
 Current version is for systems that use "aptitude", so that is a prerequisite for your_grace at this time.
 
@@ -40,3 +41,11 @@ However the core system packages, and all packages, can also be upgraded with ap
 And the added packages feature can by bypassed in the maintenance menu with the interactive aptitude option.
 
 Use on Debian 10 or Ubuntu etc.
+
+Known bugs:
+
+PATH can get temporarily unset with some usage
+
+memory leak from old sleeping instances of your_grace
+
+
