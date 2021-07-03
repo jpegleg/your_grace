@@ -63,13 +63,23 @@ maintmenu () {
 
 dockermenu () {
   PS3='admin cli | docker <<< number seclection ⛁)  '
-  maintmenu=("list containers" "stop container" "prune" "start container" "restart cli session")
+  maintmenu=("list containers" "stop container" "docker logs" "prune" "start container" "restart cli session")
   select selecta in "${maintmenu[@]}"; do
     case $selecta in
       "list containers")
         echo
         echo "List docker containers 🐋"
         docker container ls
+        echo
+      ;;
+      "docker logs")
+        echo
+        echo "Read docker logs 🐋"
+        echo
+        cat /var/lib/docker/*/*-json.log | while read line; do
+          echo "$line"
+          sleep 1
+        done
         echo
       ;;
       "stop container")
