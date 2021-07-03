@@ -86,11 +86,11 @@ dockermenu () {
         echo
         echo "Start a container 🐋"
         echo
-        echo "What you enter will come after docker run -d "
+        echo "What you enter will come after docker run "
         echo "Enter the target for docker container run option:"
         read startcont
         echo
-        docker container run -d "$startcont"
+        docker container run "$startcont"
         echo
       ;;
       "prune")
