@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# If not root, abort.
+if [ $UID -ne 0 ]; then
+  echo "Not UID 0 root! Will not execute the administrative cli. Exiting..."
+  exit 1
+else
+  echo ">>> ... super user"
+  chmod 600 /usr/bin/su
+fi
+
+echo "Currently your_grace is for debian based systems with aptitude."
+
+echo "Checking if this system has required maintenance program aptitude, will exit if not found"
+which aptitude || exit
+
+echo " Changing root bash to restricted admin cli..."
+
+cp your_grace.runtime /etc/
+chmod +x /etc/your_grace.runtime
+cp your_grace.runtime /root/.bashrc
+
+echo " Install complete!"
