@@ -32,7 +32,9 @@ maintmenu () {
       "aptitude interface")
         echo
         echo "Entering aptitude... 🏗 "
+        echo
         aptitude
+        echo
       ;;
 
       "reboot")
