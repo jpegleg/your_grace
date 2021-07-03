@@ -22,11 +22,14 @@ And then say goodbyte to your regular root bash shell.
 
 To more fully lock it away, use the desu version of the install script:
 
-chmod =x desu_install_your_grace
+chmod +x desu_install_your_grace
 
 ./desu_install_your_grace
 
-And then say goodbyte to your regular root bash shell, and regular root shells.
+Or just disable user access to "su" another way. Without disabling su, a user could get a regular root shell still via "su root -c sh" and so forth.
+
+
+Say goodbyte to your regular root bash shell, and regular root shells.
 
 
 Navigate the menus to execute different tasks on the CLI.
@@ -34,5 +37,6 @@ Navigate the menus to execute different tasks on the CLI.
 Added packages from after your_grace is installed are tracked in /opt/added/packages.list
 These are the only packages that can be removed while in your_grace, thus protecting the core system packages in that way.
 However the core system packages, and all packages, can also be upgraded with aptitude-based maintenance.
+And the added packages feature can by bypassed in the maintenance menu with the interactive aptitude option.
 
 Use on Debian 10 or Ubuntu etc.
