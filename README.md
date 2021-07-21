@@ -7,6 +7,8 @@ Installation of this can make it difficult or impossible to get a root bash shel
 Root bash sessions become trapped inside of this admin cli. The desu installer makes it even
 more difficult to get a full root shell back.
 
+control+d should get you back to a real shell, you might have to do it repeatedly.
+
 Current version is for systems that use "aptitude", so that is a prerequisite for your_grace at this time.
 
 apt-get install -y aptitude
