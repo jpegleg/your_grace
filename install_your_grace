@@ -15,8 +15,10 @@ which aptitude || exit
 
 echo " Changing root bash to restricted admin cli..."
 
-cp your_grace.runtime /etc/
-chmod +x /etc/your_grace.runtime
+cp your_grace.runtime /usr/local/sbin/
+chmod +x /usr/local/sbin/your_grace.runtime
+cp your_grace.core /usr/local/sbin/
+chmod +x /usr/local/sbin/your_grace.core
 cp your_grace.runtime /root/.bashrc
 
 echo " Install complete!"
