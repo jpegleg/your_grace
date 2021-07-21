@@ -727,6 +727,6 @@ trapexit () {
   /etc/your_grace.runtime
 }
 
-trap trapexit HUP TERM INT
+trap trapexit HUP TERM INT KILL QUIT STOP ABRT
 
 selfproc
