@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -I
+#!/usr/bin/env bash
 
 # Run interactive administrative pre-defined actions.
 
@@ -72,8 +72,10 @@ maintmenu () {
         rm -rf your_grace
         git clone https://github.com/jpegleg/your_grace
         cp your_grace/your_grace.runtime ~/.bashrc 
-        cp your_grace/your_grace.runtime /etc/your_grace.runtime
-        chmod +x /etc/your_grace.runtime
+        cp your_grace/your_grace.runtime /usr/local/sbin/your_grace.runtime
+        cp your_grace/your_grace.core /usr/local/sbin/your_grace.core
+        chmod +x /usr/local/sbin/your_grace.runtime
+        chmod +x /usr/local/sbin/your_grace.core
         trapexit
       ;;
       "restart cli session")
@@ -724,7 +726,7 @@ selfproc () {
 
 trapexit () {
   logger "your_grace session terminated" >/dev/null &
-  /etc/your_grace.runtime
+  /usr/local/sbin/your_grace.runtime
 }
 
 trap trapexit HUP TERM INT KILL QUIT STOP ABRT
