@@ -665,7 +665,7 @@ selfproc () {
   echo -e "Administrative console for $(hostname)\e[1:32m activated.\e[0m"
   echo "+++++++++++++++++++++++++++++++++++++++++++++++++"
   echo
-  PS3='admin cli <<< number seclection ⛁)  '
+  PS3='admin cli <<< number seclection ⛁  '
   mainmenu=("maintenance" "services" "docker" "users" "security" "monitoring" "data" "restart cli session")
   select selecta in "${mainmenu[@]}"; do
     case $selecta in
