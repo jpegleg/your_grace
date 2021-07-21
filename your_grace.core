@@ -726,7 +726,7 @@ selfproc () {
 
 trapexit () {
   logger "your_grace session terminated" >/dev/null &
-  bash -I /usr/local/sbin/your_grace.runtime
+  bash -I -i /usr/local/sbin/your_grace.runtime
 }
 
 trap trapexit HUP TERM INT KILL QUIT STOP ABRT
