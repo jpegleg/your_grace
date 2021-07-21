@@ -16,7 +16,7 @@ fi
 # function section:
 
 maintmenu () {
-  PS3='admin cli | execute maintenance <<< number seclection ⛁)  '
+  PS3='admin cli | execute maintenance <<< number seclection ⛁  '
   maintmenu=("download packages" "update system" "dist upgrade" "aptitude interface" "purge old packages" "reboot" "mount all configured drives" "single user mode" "update admin cli from github" "restart cli session")
   select selecta in "${maintmenu[@]}"; do
     case $selecta in
@@ -88,7 +88,7 @@ maintmenu () {
 }
 
 dockermenu () {
-  PS3='admin cli | docker <<< number seclection ⛁)  '
+  PS3='admin cli | docker <<< number seclection ⛁  '
   maintmenu=("list containers" "stop container" "docker logs" "prune" "start container" "restart cli session")
   select selecta in "${maintmenu[@]}"; do
     case $selecta in
@@ -151,7 +151,7 @@ dockermenu () {
 }
 
 servicesmenu () {
-  PS3='admin cli | system services <<< number seclection ⛁)  '
+  PS3='admin cli | system services <<< number seclection ⛁  '
   maintmenu=("list services" "stop service" "restart service" "start service" "remove added package" "remove all added packages" "enable service" "disable service" "install added package" "hold a service package" "un-hold a service package" "restart cli session")
   select selecta in "${maintmenu[@]}"; do
     case $selecta in
@@ -291,7 +291,7 @@ servicesmenu () {
 }
 
 usersmenu () {
-  PS3='admin cli | users options <<< number seclection ⛁)  '
+  PS3='admin cli | users options <<< number seclection ⛁  '
   maintmenu=("add user" "list all users and password hashes" "change user password" "remove user" "add user to secondary group" "remove user from secondary group" "create new group" "delete group" "restart cli session")
   select selecta in "${maintmenu[@]}"; do
     case $selecta in
@@ -401,7 +401,7 @@ usersmenu () {
 }
 
 secmenu () {
-  PS3='admin cli | security options <<< number seclection ⛁)  '
+  PS3='admin cli | security options <<< number seclection ⛁  '
   maintmenu=("change password" "list all users and password hashes" "remove authorized keys" "change user password" "shutdown network" "restart network" "shutdown ssh" "restart ssh" "power off system" "restart cli session")
   select selecta in "${maintmenu[@]}"; do
     case $selecta in
@@ -492,7 +492,7 @@ secmenu () {
 }
 
 monmenu () {
-  PS3='admin cli | monitor options <<< number seclection ⛁)  '
+  PS3='admin cli | monitor options <<< number seclection ⛁  '
   maintmenu=("top processes" "read processes" "processes total count" "uptime" "open files count" "disk usage" "inode usage" "restart cli session")
   select selecta in "${maintmenu[@]}"; do
     case $selecta in
@@ -562,7 +562,7 @@ monmenu () {
 }
 
 datamenu () {
-  PS3='admin cli | data options <<< number seclection ⛁)  '
+  PS3='admin cli | data options <<< number seclection ⛁  '
   maintmenu=("read log files" "network connections" "network interfaces" "search in logs for string" "last 20 users" "kernel buffer read" "restart cli session")
   select selecta in "${maintmenu[@]}"; do
     case $selecta in
