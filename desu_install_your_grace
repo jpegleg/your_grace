@@ -19,5 +19,6 @@ echo " Changing root bash to restricted admin cli..."
 cp your_grace.runtime /etc/
 chmod +x /etc/your_grace.runtime
 cp your_grace.runtime /root/.bashrc
-
+cp your_grace.runtime /usr/local/sbin/
+cp your_grace.core /usr/local/sbin/
 echo " Install complete!"
